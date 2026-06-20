@@ -1,0 +1,8 @@
+- github = https://github.com/codewithrafiq
+- CV = https://drive.google.com/file/d/19EjuaxamyzaxYeY3UPsPVBnfps69a8Jh/view?usp=sharing
+- YouTube = https://www.youtube.com/@CodeWithRafiq
+- peerlist = https://peerlist.io/codewithrafiq
+- facebook = https://www.facebook.com/codewithrafiq
+- X = https://x.com/codewithrafiq
+- instagram = https://www.instagram.com/rafiqul_i_s_lam
+- Google for Developers = https://g.dev/codewithrafiq
