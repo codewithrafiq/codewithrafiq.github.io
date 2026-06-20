@@ -11,12 +11,16 @@ code {
 }
 
 ::selection {
-  background: rgba(255, 107, 53, 0.3);
-  color: #fff;
+  background: rgba(217, 83, 43, 0.22);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #0a0a0c; }
-::-webkit-scrollbar-thumb { background: #2a2a30; border-radius: 8px; border: 2px solid #0a0a0c; }
-::-webkit-scrollbar-thumb:hover { background: #3a3a42; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb, #ddd2c6);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent, #d9532b); background-clip: padding-box; }

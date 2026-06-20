@@ -4,7 +4,16 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0a0a0c" />
+    <meta name="theme-color" content="#faf6f0" />
+    <!-- Apply saved/preferred theme before paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem('theme');
+          document.documentElement.dataset.theme = (s === 'dark') ? 'dark' : 'light';
+        } catch (e) {}
+      })();
+    </script>
     <meta
       name="description"
       content="MD Rafiqul Islam — Software Engineer with 5+ years building scalable backends, microservices, and AI-driven systems with Python, FastAPI, Kafka and more."

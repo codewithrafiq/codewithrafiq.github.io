@@ -10,7 +10,13 @@ hosted at **https://codewithrafiq.github.io** via **GitHub Pages**.
 - **Framework:** React 19 (Create React App / `react-scripts` 5).
 - **Type:** Single page, single component. No router, no backend, no external runtime deps.
 - **Styling:** Hand-written CSS (no Tailwind/UI library). Design tokens are CSS
-  custom properties in `:root` (see `app/src/App.css`). Dark theme, warm-orange accent.
+  custom properties in `:root` (see `app/src/App.css`). Warm palette, coral accent.
+- **Theming:** Light ("Ivory", the default) and dark ("Ember") themes. Tokens are
+  defined under `:root[data-theme='light']` and `:root[data-theme='dark']`; the
+  active theme is set via `data-theme` on `<html>`. A toggle in the nav flips it
+  and persists to `localStorage('theme')`; an inline script in `public/index.html`
+  applies the saved theme before paint (no flash). New colors MUST be added as
+  tokens in BOTH theme blocks — never hard-code a hex that only works in one theme.
 
 ## Critical layout convention (read before building)
 

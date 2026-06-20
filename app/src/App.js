@@ -10,6 +10,7 @@ const NAV = [
 ];
 
 const SOCIALS = [
+  { label: 'Website', short: 'WEB', href: 'https://codewithrafiq.com/' },
   { label: 'GitHub', short: 'GH', href: 'https://github.com/codewithrafiq' },
   { label: 'YouTube', short: 'YT', href: 'https://www.youtube.com/@CodeWithRafiq' },
   { label: 'Peerlist', short: 'PL', href: 'https://peerlist.io/codewithrafiq' },
@@ -18,6 +19,19 @@ const SOCIALS = [
   { label: 'Facebook', short: 'FB', href: 'https://www.facebook.com/codewithrafiq' },
   { label: 'Instagram', short: 'IG', href: 'https://www.instagram.com/rafiqul_i_s_lam' },
 ];
+
+const SunIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
 
 const CV_URL = 'https://drive.google.com/file/d/19EjuaxamyzaxYeY3UPsPVBnfps69a8Jh/view?usp=sharing';
 
@@ -137,11 +151,29 @@ function useScrollSpy(ids) {
   return active;
 }
 
+function getInitialTheme() {
+  if (typeof window === 'undefined') return 'light';
+  const saved = window.localStorage.getItem('theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  // Default to the warm light theme; remember the visitor's choice thereafter.
+  return 'light';
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState(getInitialTheme);
   const navIds = useRef(NAV.map((n) => n.id)).current;
   const active = useScrollSpy(navIds);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('theme', theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#14110e' : '#faf6f0');
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -169,29 +201,40 @@ function App() {
             <span className="brand__name">Rafiqul Islam</span>
           </a>
 
-          <nav className={`nav__links ${menuOpen ? 'is-open' : ''}`}>
-            {NAV.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={active === item.id ? 'is-active' : ''}
-                onClick={(e) => go(e, item.id)}
-              >
-                {item.label}
+          <div className="nav__right">
+            <nav className={`nav__links ${menuOpen ? 'is-open' : ''}`}>
+              {NAV.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={active === item.id ? 'is-active' : ''}
+                  onClick={(e) => go(e, item.id)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a className="nav__cta" href={CV_URL} target="_blank" rel="noreferrer">
+                Resume
               </a>
-            ))}
-            <a className="nav__cta" href={CV_URL} target="_blank" rel="noreferrer">
-              Resume
-            </a>
-          </nav>
+            </nav>
 
-          <button
-            className={`burger ${menuOpen ? 'is-open' : ''}`}
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            <span /><span /><span />
-          </button>
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
+
+            <button
+              className={`burger ${menuOpen ? 'is-open' : ''}`}
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              <span /><span /><span />
+            </button>
+          </div>
         </div>
       </header>
 
