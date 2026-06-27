@@ -7,3 +7,4 @@
 - instagram = https://www.instagram.com/rafiqul_i_s_lam
 - Google for Developers = https://g.dev/codewithrafiq
 - Website = https://codewithrafiq.com/
+- Linkedin = https://www.linkedin.com/in/codewithrafiq-dev/

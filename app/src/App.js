@@ -12,6 +12,7 @@ const NAV = [
 const SOCIALS = [
   { label: 'Website', short: 'WEB', href: 'https://codewithrafiq.com/' },
   { label: 'GitHub', short: 'GH', href: 'https://github.com/codewithrafiq' },
+  { label: 'LinkedIn', short: 'LI', href: 'https://www.linkedin.com/in/codewithrafiq-dev/' },
   { label: 'YouTube', short: 'YT', href: 'https://www.youtube.com/@CodeWithRafiq' },
   { label: 'Peerlist', short: 'PL', href: 'https://peerlist.io/codewithrafiq' },
   { label: 'Google Dev', short: 'GD', href: 'https://g.dev/codewithrafiq' },
